@@ -30,4 +30,18 @@ View logs with:
 docker compose logs -f
 ```
 
+The Docker image uses its included Node.js runtime for YouTube JavaScript challenges. If YouTube asks for sign-in or reports that the request is from a bot, provide cookies from an account that is authorized to access the content. Export them in Netscape format, mount the file read-only, and set the cookie path in Compose:
+
+```yaml
+services:
+	clipwell:
+		environment:
+			YT_DLP_COOKIES: /app/secrets/youtube-cookies.txt
+		volumes:
+			- ./downloads:/app/downloads
+			- ./youtube-cookies.txt:/app/secrets/youtube-cookies.txt:ro
+```
+
+Keep the cookies file out of Git and do not expose it through the web server. Cookies can expire, and YouTube may still reject requests from a datacenter IP even when valid cookies are supplied.
+
 Use this only for content you have the right to download. YouTube's terms and copyright rules still apply.

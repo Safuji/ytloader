@@ -9,6 +9,8 @@ const { spawn } = require('child_process');
 const app = express();
 const port = process.env.PORT || 3000;
 const ytDlpCommand = process.env.YT_DLP_COMMAND || (process.platform === 'win32' ? 'py' : 'yt-dlp');
+const ytDlpJsRuntime = process.env.YT_DLP_JS_RUNTIME || 'node';
+const ytDlpCookies = process.env.YT_DLP_COOKIES;
 const downloadsDirectory = path.resolve(process.env.DOWNLOAD_DIR || path.join(__dirname, 'downloads'));
 
 fs.mkdirSync(downloadsDirectory, { recursive: true });
@@ -36,7 +38,20 @@ app.post('/api/download', (request, response) => {
   const ytDlpArgs = process.platform === 'win32' && !process.env.YT_DLP_COMMAND ? ['-m', 'yt_dlp'] : [];
   const tempDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'clipwell-'));
   const outputTemplate = path.join(tempDirectory, 'download.%(ext)s');
-  const outputArgs = ['--no-playlist', '-x', '--audio-format', 'mp3', '--audio-quality', '0', '-o', outputTemplate, url];
+  const outputArgs = [
+    '--no-playlist',
+    '--js-runtimes',
+    ytDlpJsRuntime,
+    ...(ytDlpCookies ? ['--cookies', ytDlpCookies] : []),
+    '-x',
+    '--audio-format',
+    'mp3',
+    '--audio-quality',
+    '0',
+    '-o',
+    outputTemplate,
+    url,
+  ];
 
   const downloader = spawn(ytDlpCommand, [...ytDlpArgs, ...outputArgs], { windowsHide: true });
   let errorOutput = '';
