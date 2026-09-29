@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download YouTube videos you own or have permission to save.">
+  <title>Clipwell | YouTube downloader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <nav class="topbar" aria-label="Main navigation">
+      <a class="brand" href="/" aria-label="Clipwell home"><span class="brand-mark">C</span><span>clipwell</span></a>
+      <span class="secure-note"><span class="status-dot"></span>Runs locally on your machine</span>
+    </nav>
+
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">Personal media utility</p>
+      <h1 id="page-title">Keep the clips<br><em>you’re allowed</em> to keep.</h1>
+      <p class="intro">Paste a YouTube link and save an MP3 copy to the server’s downloads folder.</p>
+
+      <form id="download-form" class="download-panel">
+        <label for="youtube-url">YouTube URL</label>
+        <div class="url-row">
+          <input id="youtube-url" name="url" type="url" placeholder="https://youtube.com/watch?v=..." autocomplete="url" required>
+          <button type="submit" id="download-button"><span class="button-label">Download</span><span class="button-arrow" aria-hidden="true">&#8599;</span></button>
+        </div>
+        <div class="format-row"><span>Output format</span><strong>MP3 audio</strong><span class="format-note">Best available quality</span></div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <span>Only download content you have rights to use.</span>
+      <span>Open source utility · v1.0</span>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

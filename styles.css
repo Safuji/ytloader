@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  --ink: #202426;
+  --muted: #697073;
+  --paper: #f3f0e9;
+  --panel: #fffdf8;
+  --line: #d8d3c7;
+  --accent: #ef654d;
+  --accent-dark: #c84735;
+  --teal: #3f726e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: .45;
+  pointer-events: none;
+  background-image: radial-gradient(#c9c2b4 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+.shell { max-width: 1180px; min-height: 100vh; margin: 0 auto; padding: 28px 54px 24px; display: flex; flex-direction: column; }
+.topbar { display: flex; justify-content: space-between; align-items: center; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -.04em; }
+.brand-mark { display: grid; width: 29px; height: 29px; place-items: center; color: white; background: var(--accent); border-radius: 50%; font-size: 16px; transform: rotate(-8deg); }
+.secure-note { color: var(--muted); font-size: 12px; }
+.status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(63,114,110,.12); }
+.hero { width: min(760px, 100%); margin: auto; padding: 96px 0 110px; }
+.eyebrow { margin: 0 0 21px; color: var(--accent-dark); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+h1 { max-width: 750px; margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(48px, 7vw, 84px); line-height: .98; letter-spacing: -.075em; }
+h1 em { color: var(--accent); font-style: normal; }
+.intro { max-width: 520px; margin: 28px 0 42px; color: var(--muted); font-size: 17px; line-height: 1.55; }
+.download-panel { padding: 25px; background: rgba(255,253,248,.8); border: 1px solid var(--line); box-shadow: 9px 9px 0 rgba(32,36,38,.06); }
+.download-panel > label { display: block; margin-bottom: 10px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+.url-row { display: flex; gap: 10px; }
+input, select, button { font: inherit; }
+input { width: 100%; min-width: 0; padding: 16px 17px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 0; outline: none; }
+input:focus, select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(63,114,110,.13); }
+button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 17px; padding: 0 17px 0 20px; color: white; background: var(--accent); border: 0; border-radius: 0; font-weight: 700; cursor: pointer; transition: background .18s ease, transform .18s ease; }
+button:hover { background: var(--accent-dark); transform: translateY(-2px); }
+button:disabled { cursor: wait; opacity: .7; transform: none; }
+.button-arrow { font-size: 21px; line-height: 1; }
+.format-row { display: flex; align-items: center; gap: 9px; margin-top: 18px; color: var(--muted); font-size: 12px; }
+.format-row strong { color: var(--ink); font-weight: 700; }
+.format-note { margin-left: auto; color: var(--muted); font-size: 12px; }
+.status { min-height: 18px; margin: 15px 0 0; color: var(--muted); font-size: 13px; }
+.status.error { color: var(--accent-dark); }
+.status.success { color: var(--teal); }
+.footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 20px; color: var(--muted); border-top: 1px solid var(--line); font-size: 11px; }
+
+@media (max-width: 640px) {
+  .shell { padding: 22px 20px 20px; }
+  .secure-note { display: none; }
+  .hero { padding: 85px 0 90px; }
+  h1 { font-size: clamp(45px, 15vw, 70px); }
+  .intro { font-size: 15px; }
+  .download-panel { padding: 17px; }
+  .url-row { display: block; }
+  button { width: 100%; justify-content: space-between; margin-top: 10px; padding: 14px 17px 14px 20px; }
+  .format-row { flex-wrap: wrap; }
+  .format-note { width: 100%; margin-left: 0; }
+  .footer { display: block; line-height: 1.8; }
+  .footer span { display: block; }
+}
