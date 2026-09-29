@@ -7,6 +7,7 @@ services:
       - "${PORT:-3000}:3000"
     volumes:
       - ./downloads:/app/downloads
+      - ./youtube-cookies.txt:/app/secrets/youtube-cookies.txt:ro
     environment:
       PORT: ${PORT:-3000}
       DOWNLOAD_DIR: ${DOWNLOAD_DIR:-/app/downloads}
