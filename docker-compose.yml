@@ -10,3 +10,4 @@ services:
     environment:
       PORT: ${PORT:-3000}
       DOWNLOAD_DIR: ${DOWNLOAD_DIR:-/app/downloads}
+      YT_DLP_JS_RUNTIME: ${YT_DLP_JS_RUNTIME:-node:/usr/local/bin/node}
